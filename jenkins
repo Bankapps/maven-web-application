@@ -1,0 +1,26 @@
+node {
+    //github
+    def mavenversion = tool name:'maven 3.8.5'
+    echo " The Job is: ${env.JOB_NAME}"
+    echo " The Build number is: ${env.BUILD_NUMBER}"
+    echo " The Node Name is: ${env.NODE_NAME}"
+    
+    stage('Codecheckout'){
+    git branch: 'development', credentialsId: '44f1d70e-fd72-4ea8-a67c-38dc99018a99', url: 'https://github.com/Bankapps/maven-web-application.git'   
+    }
+    //maven
+    stage('Build'){
+    sh "${mavenversion}/bin/mvn clean package"
+    }
+    //sonarqube
+    stage('Codecovaerage'){
+    sh "${mavenversion}/bin/mvn sonar:sonar"
+    }
+    
+    //nexus repository
+    stage('Artifacts'){
+    sh "${mavenversion}/bin/mvn deploy"
+        
+    }
+    
+}

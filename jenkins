@@ -9,6 +9,7 @@ try {
     properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')), [$class: 'JobLocalConfiguration', changeReasonComment: ''], pipelineTriggers([pollSCM('* * * * *')])])
     
     stage('Codecheckout'){
+    sendSlackNotifications("STARTED")
     git branch: 'development', credentialsId: '44f1d70e-fd72-4ea8-a67c-38dc99018a99', url: 'https://github.com/Bankapps/maven-web-application.git'   
     }
     //maven

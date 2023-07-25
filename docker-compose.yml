@@ -1,7 +1,7 @@
 version: '3.1'
 services:
   springboot:
-    image: likhithagodina/maven-web-application:VERSION
+    image: likhithagodina/maven-web-application:{buildNumber}
     restart: always
     ports:
     - 8080:8080

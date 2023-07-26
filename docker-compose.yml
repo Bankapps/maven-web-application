@@ -1,7 +1,7 @@
 version: '3.1'
 services:
-  maven-web-app:
-    image: likhithagodina/maven-web-app:VERSION
+  maven-web-appli:
+    image: likhithagodina/maven-web-appli:VERSION
     restart: always
     ports:
     - 8080:8080
